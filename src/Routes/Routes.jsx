@@ -4,6 +4,11 @@ import {
 import Root from "../Layouts/Root";
 import Homepage from "../Pages/Homepage";
 import Bills from "../Pages/Bills";
+import Register from "../Pages/Register";
+import Login from "../Pages/Login";
+import Mybills from "../Pages/Mybills";
+import PrivateRoute from "./Privateroute";
+import BillDetails from "../Pages/BillDetails";
 
 export const router = createBrowserRouter([
   {
@@ -15,10 +20,38 @@ export const router = createBrowserRouter([
                 Component: Homepage
             },
 
+
             {
+                path: '/register',
+                Component: Register
+            },
+
+            {
+                path: '/login',
+                Component: Login
+            },
+
+              {
                 path: '/bills',
                 Component: Bills
+            },
+
+              {
+                path: '/mybills',
+                element: <PrivateRoute>
+                    <Mybills></Mybills>
+                </PrivateRoute>
+            },
+
+            {
+                 path: '/bill/details',
+                element: <PrivateRoute>
+                    <BillDetails></BillDetails>
+                </PrivateRoute>
+
             }
+
+
         ]
 
    
