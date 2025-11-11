@@ -14,7 +14,7 @@ const Navbar = () => {
 
     return (
         <div className=''>
-             <nav className = 'flex flex-col md:flex-row gap-3 justify-between items-center font-bold py-3 lg:py-6 px-4 lg:px-16 bg-gradient-to-r from-[#0b1e3d] via-[#13284f] to-[#1a3570] text-white '>
+             <nav className = 'flex flex-col md:flex-row gap-3 justify-between items-center font-bold py-3 lg:py-6 px-4 lg:px-16 bg-blue-900 text-white'>
                 <div> <p>LOGO</p>
                 </div>
 

@@ -15,7 +15,7 @@ const Register = () => {
     const pattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
 
-
+    
 
 
     const handleRegister = (e) => {

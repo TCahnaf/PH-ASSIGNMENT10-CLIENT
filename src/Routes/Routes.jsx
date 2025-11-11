@@ -17,6 +17,10 @@ export const router = createBrowserRouter([
         children: [
             {
                 index:true,
+                loader: async() => {
+                  const res = await fetch('http://localhost:3000/bills?limit=6')
+                  return res.json();
+                },
                 Component: Homepage
             },
 
