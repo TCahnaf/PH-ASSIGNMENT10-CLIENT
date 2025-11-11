@@ -3,14 +3,36 @@
 
 
 
-
-
-
-
-
+body {
+  font-family: 'Inter';
+}
 
 .font-poppins {
     font-family: 'Poppins';
 }
 
 /* ---------- Fonts / Headings ---------- */
+.heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* bold */
+  color: #1a1a1a;
+  font-size: 24px; /* px-based */
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  margin: 8px }
+
+.image{
+  height: 500px ;
+  width: 600px;
+}
+
+
+
+
+/* .card-image{
+  height: 56px;
+} */
+
+.gold-text{
+  color:#d4af37;
+}

@@ -7,13 +7,13 @@ const Cards = ({bill}) => {
       <div>
         <img className="w-52 h-40 rounded-2xl" src= {bill.image} alt="" />
       </div>
-      <div className = "space-y-2">
+      <div className = "space-y-1 flex-1">
         <p className="font-extrabold">{bill.title}</p>
         <p className>{bill.location}</p>
          <p className>Please Pay:${bill.amount}</p>
       </div>
       <button className="bg-sky-700 font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-colors">
-        <Link to = {'/bill/details'}>See Details</Link>
+        <Link to = {`/bill/details/${bill._id}`}>See Details</Link>
         
         </button>
     </div>

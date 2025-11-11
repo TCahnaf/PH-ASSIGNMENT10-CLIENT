@@ -28,7 +28,7 @@ const Bills = () => {
         <div className=' bg-[#d4af37] min-h-screen   '>
             
 <div className="p-4 flex flex-col space-y-2 ">
-  <label>
+  <label className = "text-2xl">
     Filter Bills By Categories
   </label>
 

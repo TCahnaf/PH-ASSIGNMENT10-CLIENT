@@ -1,5 +1,6 @@
 import {
   createBrowserRouter,
+  useParams,
 } from "react-router";
 import Root from "../Layouts/Root";
 import Homepage from "../Pages/Homepage";
@@ -52,7 +53,12 @@ export const router = createBrowserRouter([
             },
 
             {
-                 path: '/bill/details',
+                 path: '/bill/details/:id',
+                  loader: async({params}) => {
+                  const res = await fetch(`http://localhost:3000/bills/${params.id}`)
+                  return res.json();
+                },
+
                 element: <PrivateRoute>
                     <BillDetails></BillDetails>
                 </PrivateRoute>
