@@ -1,6 +1,7 @@
 import React, { use, useRef } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../Providers/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const BillDetails = () => {
@@ -14,13 +15,57 @@ const BillDetails = () => {
     console.log(billValidation)
     const modalRef = useRef(null)
 
+    const today = currentDate.toISOString().split('T')[0];
+    console.log(today)
+
     const handleModal = () => {
         modalRef.current.showModal();
 
     }
 
+    const submitPaymentInfo = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value
+          const billId = e.target.billId.value
+            const amount = e.target.amount.value
+              const username = e.target.username.value
+                const address = e.target.address.value
+                  const phone = e.target.phone.value
+                    const date = e.target.date.value
+
+        const paymentInfo = {
+           bill_id:billId,
+            email,
+            amount,
+            user_name: username,
+            address:address,
+            phone,
+            date  
+        }
+
+        fetch('http://localhost:3000/mybills', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+              body: JSON.stringify(paymentInfo)  
+            }).then(res => res.json()).
+            then(data => {
+                if(data.insertedId){
+                    modalRef.current.close();
+                    toast.success('Payment Submitted Successfully')
+                }
+                else{
+                    toast.error('Sorry Something Went Wrong')
+                }
+            })
+        }
+
+      
+
 
     return (
+    
         <div className='bg-sky-700 min-h-screen'>
 
             <div className='flex flex-col lg:flex-row gap-5  justify-center items-center  p-20'>
@@ -51,7 +96,7 @@ const BillDetails = () => {
                   <h1>Your located at {bill.location}</h1>
                 </div>
                  <div className='border-3 flex justify-center items-center border-amber-200 rounded-lg h-[109px]'>
-                  <h1>Please Pay${bill.amount}</h1>
+                  <h1>Please Pay ${bill.amount}</h1>
                 </div>
                    <div className='border-3 flex justify-center items-center border-amber-200 rounded-lg h-[109px]'>
                   <h1> Due On: {bill.date}</h1>
@@ -65,18 +110,18 @@ const BillDetails = () => {
 <dialog ref = {modalRef} className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
     <h3 className="font-bold text-lg">Please fill out the feilds!</h3>
-    <form >
+    <form onSubmit={submitPaymentInfo}>
          <fieldset className="fieldset">
      {/* username */}
         <label className='label'>Email</label>
-        <input type="email" name = "email" value = {user.email} className='input' readOnly/>
+        <input type="email" name = "email" defaultValue = {user.email} className='input' readOnly/>
 
         <label className='label'>BillId</label>
-        <input type="text" name = "" value={bill._id} className='input' readOnly/>
+        <input type="text" name = "billId" defaultValue={bill._id} className='input' readOnly/>
         
 
          <label className='label'>Amount Due</label>
-        <input type="text" name='amount' value={bill.amount} className='input' readOnly/>
+        <input type="text" name='amount' defaultValue={bill.amount} className='input' readOnly/>
 
         <label className='label'>Username</label>
         <input type="text" name = 'username' placeholder='your username'   className='input' />
@@ -88,7 +133,7 @@ const BillDetails = () => {
         <input type="text" name = 'phone' placeholder='your number'  className='input ' />
 
            <label className='label'>Date</label>
-        <input type="text" value = {bill.date} name = 'date'  className='input' />
+        <input type="text" defaultValue = {today} name = 'date'  className='input' />
          <button className='button mt-2 '>Pay Now</button>
         </fieldset>
 
@@ -99,9 +144,6 @@ const BillDetails = () => {
 
       <form method="dialog">
         
-       
-       
-
 
        
         <button className="btn">Close</button>
@@ -115,7 +157,7 @@ const BillDetails = () => {
             </div>
 
             
-
+<Toaster position='top-right'></Toaster>
           
 
 
