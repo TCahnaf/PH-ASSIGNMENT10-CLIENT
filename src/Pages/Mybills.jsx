@@ -10,6 +10,7 @@ const Mybills = () => {
   const {user} = use(AuthContext);
 
   const updateModalRef = useRef(null);
+  const deleteModalRef = useRef(null);
 
   const fetchBills = () => {
     if (user?.email) {
@@ -34,6 +35,13 @@ const handleUpdateModal = (bill) =>{
   setSelectedBill(bill)
   updateModalRef.current.showModal();
 }
+
+const handleDeleteModal = (bill) =>{
+  setSelectedBill(bill)
+  deleteModalRef.current.showModal();
+}
+
+
 
 
   const updateBill = (e, id) => {
@@ -75,7 +83,10 @@ const handleUpdateModal = (bill) =>{
   )
   }
 
-  const deleteBill = (id) => {
+  const deleteBill = (e,id) => {
+    e.preventDefault();
+  
+    if (!selectedBill) return; 
 
     fetch(`http://localhost:3000/mybills/${id}`, {
       method: 'DELETE'
@@ -84,6 +95,7 @@ const handleUpdateModal = (bill) =>{
     then(data => {
       if(data.deletedCount) {
         toast.success("Bill deleted Successfully")
+         deleteModalRef.current.close();
       }
 
       else {
@@ -130,7 +142,7 @@ const handleUpdateModal = (bill) =>{
             <td>{bill.date}</td>
             <td><button onClick={()=>{handleUpdateModal(bill)}} className='button'>Update This Payment</button></td>
            
-             <td><button className='button'>Delete This Payment</button></td>
+             <td><button onClick={()=>{handleDeleteModal(bill)}} className='button'>Delete This Payment</button></td>
           </tr>
         ))
       }     
@@ -166,24 +178,16 @@ const handleUpdateModal = (bill) =>{
   </div>
 </dialog>
 
-
- <dialog ref = {updateModalRef} className="modal modal-bottom sm:modal-middle">
+{/* modal for deleting bill */}
+ <dialog ref = {deleteModalRef} className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Please fill out the fields!</h3>
+   
     
-    <form onSubmit={ (e) => updateBill(e,selectedBill._id)} > 
-         <fieldset className="fieldset">
-         <label className='label'>Amount Due</label>
-        <input type="text" name='amount' defaultValue={selectedBill?.amount || '' } className='input'/>
-           <label className='label'>Address</label>
-        <input type="text" name = 'address' defaultValue={selectedBill?.address || '' }  className='input' />
-              <label className='label'>Phone</label>
-        <input type="text" name = 'phone' defaultValue={selectedBill?.phone || '' }  className='input ' />
-           <label className='label'>Date</label>
-        <input type="text" defaultValue = {selectedBill?.date  || ''} name = 'date'  className='input' />
-        
-         <button type = "submit" className='button mt-2  '>Update Now</button> 
-        </fieldset>
+    <form onSubmit={ (e) => deleteBill(e,selectedBill._id)} > 
+        <div className='flex justify-center'>
+          <button type = "submit" className='button  '>Click to Confirm Deletion </button> 
+          </div>
+
         </form>
 
     <div className="modal-action">
