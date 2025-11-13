@@ -74,7 +74,7 @@ const BillDetails = () => {
 
             <div className = "flex flex-col space-y-5 lg:w-[600px]">
                   <div>
-                <img className='h-[500px] rounded-2xl' src= {bill.image}></img>
+                <img className='h-80 lg:h-[500px] rounded-2xl' src= {bill.image}></img>
             </div>
 
             
