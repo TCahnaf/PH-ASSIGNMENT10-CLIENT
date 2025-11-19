@@ -17,9 +17,12 @@ Users can browse available utility bills and manage bill via the system. User's 
 Animations and transitions across the app are enhanced using Framer Motion and React-simple-typewriter. Authentication enables users to manage their profile and access password-protected features securely.
 
 <h1 align = "left">Key Features</h1>
-1. A system that successfully authenticates a user.
-2. Bill management system that allows users to pay montly utility Bills.
-3. Paying bills, updating bill info and deleting bill info.
+<h3>1. A system that successfully authenticates a user.</h3>
+<h3>2. Bill management system that allows users to pay montly utility Bills.</h3>
+<h3>3. Paying bills, updating bill info and deleting bill info.</h3>
+
+
+
 
 ## 🛠 Tech Stack & Tools
 
@@ -31,7 +34,7 @@ Animations and transitions across the app are enhanced using Framer Motion and R
 - **npm packages**:react,react-router,framer-motion,firebase, tailwindcss, daisyui, express
 
 <h1 align = "left">Live Link and preview this application on your device</h1>
-#Clone the repository:
+<h3>#Clone the repository:</h3>
 <h3>git clone:https://github.com/TCahnaf/Utility-Bill-Management-System-Client.git </h3>
-Live Link:
+<h3>Live Link:</h3>
 <h3> https://warm-stardust-b1f787.netlify.app/ </h3>
